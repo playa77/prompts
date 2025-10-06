@@ -1,1 +1,0 @@
-summarize this conversation to a seed prompt for another large llm to help me get "a second opinion". be neutral and precise with both details and tone/style.
