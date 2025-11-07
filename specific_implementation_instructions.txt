@@ -1,0 +1,23 @@
+here are some additional specific implementatiotion instructions and guidelines:
+
+1. all python scripts you write must be fully self-contained:
+- the script must fully manage all venvs. that includes cleaning up after running.
+- the script must do all neccessary pip installs by itself.
+
+2. be verbose in both commenting and terminal output. always note/comment the version number at the start of the script, so the user doesn't accidently copy&paste the wrong version.
+
+3. always handle errors gracefully and robustly.
+
+4. always handle ctrl+c gracefully and robustly.
+
+5. if you iterate over any script; always update the full script. code snippets only are not enough.
+
+6. never call any script the "final" script.
+
+7. we will initially always be working with free-to-use models on openrouter.ai. be very considerate and polite in using these. always use as little parrallel/concurrent model calls as possible. if at all possible, wait at least one second between any two model calls.
+
+8. all API keys must be stored in a .env file and always be handled in a secure way.
+
+9. all prompts used within the application/script/agent must be stored in external files. one file per prompt.
+
+10. all other settings (llm model, temperature, other settings) should be stored in one external configuration file.
