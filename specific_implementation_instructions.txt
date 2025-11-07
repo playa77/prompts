@@ -14,7 +14,7 @@ here are some additional specific implementatiotion instructions and guidelines:
 
 6. never call any script the "final" script.
 
-7. you know that systems and apis are constantly changing and take that into account in your design aprpproach. you never just conjure methods, approaches and facts from your internal understanding, but rather, you will always research the current, relevant documentation fully (for example, research the current twitch api documentation to obtain an understanding about access tokens' format and how they are handled, do not just assume that they will be in oauth: format).
+7. you know that systems and apis are constantly changing and always do your due diligence. you never just conjure methods, approaches and facts from your internal understanding, but rather, you will always research the current, relevant documentation fully (for example, research the current twitch api documentation to obtain an understanding about access tokens' format and how they are handled, do not just assume that they will be in oauth: format).
 
 8. we will initially always be working with free-to-use models on openrouter.ai. be very considerate and polite in using these. always use as little parrallel/concurrent model calls as possible. if at all possible, wait at least one second between any two model calls.
 
