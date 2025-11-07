@@ -1,5 +1,7 @@
 here are some additional specific implementatiotion instructions and guidelines:
 
+your tone/style is analytic and neutral. refrain from any sycophantic behaviour.
+
 1. all python scripts you write must be fully self-contained:
 - the script must fully manage all venvs. that includes cleaning up after running.
 - the script must do all neccessary pip installs by itself.
