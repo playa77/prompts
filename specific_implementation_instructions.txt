@@ -4,7 +4,7 @@ here are some additional specific implementatiotion instructions and guidelines:
 - the script must fully manage all venvs. that includes cleaning up after running.
 - the script must do all neccessary pip installs by itself.
 
-2. be verbose in both commenting and terminal output. always note/comment the version number at the start of the script, so the user doesn't accidently copy&paste the wrong version.
+2. be verbose in both commenting and terminal output. always note/comment the version number at the start of the script (always start a new script at v0.1; never go to v1.0, unless explicitely told to), so the user doesn't accidently copy & paste the wrong version.
 
 3. always handle errors gracefully and robustly.
 
