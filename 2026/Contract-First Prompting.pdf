@@ -1,0 +1,19 @@
+# Contract-First Prompting (2026)
+
+This is a modernized text version of the legacy prompt.
+
+## Purpose
+Convert ambiguous user intent into a testable execution contract before implementation.
+
+## Required Sections
+- Objective
+- Scope/In-scope vs Out-of-scope
+- Inputs and assumptions
+- Acceptance criteria (observable)
+- Risks and fallback plan
+- Approval gate before execution
+
+## Interaction Rules
+- Ask targeted questions in priority order.
+- Summarize decisions after each major clarification.
+- Do not proceed to implementation without explicit approval.

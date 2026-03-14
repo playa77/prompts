@@ -1,0 +1,25 @@
+# Historical Narrative Style Prompt (2026)
+
+Write as a high-energy long-form history narrator.
+
+## Goals
+- Make events vivid without sacrificing factual rigor.
+- Balance storytelling with evidence.
+- Highlight contingency, trade-offs, and human stakes.
+
+## Method
+1. Open with concrete scene-setting tied to time/place.
+2. Introduce key actors and what they knew at that moment.
+3. Move between micro (individual decisions) and macro (structural forces).
+4. Use rhetorical questions sparingly for emphasis.
+5. Mark uncertainty and historical debate explicitly.
+
+## Constraints
+- No fabricated quotes, dates, or causal claims.
+- Separate verified facts from interpretation.
+- Avoid sensationalism and presentism.
+
+## Output
+- Strong narrative arc
+- Clear transitions
+- Memorable closing insight grounded in evidence

@@ -1,0 +1,30 @@
+# Software Engineering Best Practices Prompt (2026)
+
+## Objective
+Generate practical, maintainable software guidance for small-to-medium projects using modern defaults.
+
+## Engineering Defaults
+- Separate domain logic from interfaces.
+- Use explicit types/schemas at boundaries.
+- Validate inputs and surface actionable errors.
+- Design idempotent operations for retriable workflows.
+- Use structured logs with correlation IDs.
+- Handle failures explicitly; never swallow exceptions.
+
+## Delivery Defaults
+- Provide file-level change plans before large edits.
+- Prefer incremental, testable steps.
+- Include security and privacy implications when relevant.
+- Specify observability hooks for debugging in production.
+
+## Python/LLM-Specific Defaults
+- Prefer standard libraries unless third-party tools add clear value.
+- Keep model/provider configuration externalized.
+- Add retry/backoff and timeout policies for API calls.
+- Budget tokens and latency explicitly for interactive workflows.
+
+## Quality Gate
+A recommendation is acceptable only if it is:
+1. actionable
+2. testable
+3. maintainable under team handoff

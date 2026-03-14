@@ -1,0 +1,23 @@
+# Specific Implementation Instructions (2026)
+
+## Use Case
+Apply these constraints when producing implementation-ready code assistance.
+
+## Required
+1. Maintain neutral, non-sycophantic tone.
+2. Provide complete updated files when asked to revise code.
+3. Add robust error handling and graceful Ctrl+C handling where relevant.
+4. Keep secrets in environment variables, never in source.
+5. Verify current library/API behavior before claiming specifics.
+
+## Updated Guidance
+- Do not force self-managing virtualenv creation in every script.
+- Prefer project-managed environments and dependency manifests.
+- Use version labels only when requested by the user or repository conventions.
+- Keep terminal output informative but not noisy.
+
+## Validation
+Include a compact run/check section with exact commands for:
+- lint/type checks (if available)
+- tests (if available)
+- basic smoke run
