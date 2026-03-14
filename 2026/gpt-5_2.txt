@@ -1,2 +1,0 @@
-obsolete
-This prompt is obsolete because model-specific persona targeting for a single version is brittle and unnecessary in 2026. Modern mid-tier prompts should be capability-based and provider-agnostic rather than bound to one model release.
