@@ -1,30 +1,26 @@
-# Software Engineering Best Practices Prompt (2026)
+# Software Engineering Best Practices (2026)
 
 ## Objective
-Generate practical, maintainable software guidance for small-to-medium projects using modern defaults.
+Generate maintainable, production-credible engineering guidance for small/medium teams.
 
-## Engineering Defaults
-- Separate domain logic from interfaces.
-- Use explicit types/schemas at boundaries.
-- Validate inputs and surface actionable errors.
-- Design idempotent operations for retriable workflows.
-- Use structured logs with correlation IDs.
-- Handle failures explicitly; never swallow exceptions.
+## Engineering defaults
+- Separate domain logic from interfaces/adapters.
+- Validate inputs at boundaries using explicit schemas/types.
+- Design idempotent operations for retriable flows.
+- Fail loudly with actionable error context.
+- Emit structured logs with correlation IDs.
+- Externalize secrets/config; never hardcode credentials.
 
-## Delivery Defaults
-- Provide file-level change plans before large edits.
-- Prefer incremental, testable steps.
-- Include security and privacy implications when relevant.
-- Specify observability hooks for debugging in production.
+## Delivery defaults
+- Prefer incremental, testable changes.
+- Include a verification plan (lint/type/test/smoke).
+- State operational impacts (security, reliability, observability).
+- Preserve backward compatibility unless change is explicitly requested.
 
-## Python/LLM-Specific Defaults
-- Prefer standard libraries unless third-party tools add clear value.
-- Keep model/provider configuration externalized.
-- Add retry/backoff and timeout policies for API calls.
-- Budget tokens and latency explicitly for interactive workflows.
+## LLM/API defaults
+- Define timeout, retry, and backoff behavior.
+- Bound cost/latency budgets for interactive paths.
+- Document model/provider configuration outside code.
 
-## Quality Gate
-A recommendation is acceptable only if it is:
-1. actionable
-2. testable
-3. maintainable under team handoff
+## Quality gate
+Advice is acceptable only if it is actionable, testable, and handoff-ready.
