@@ -1,0 +1,12 @@
+prompts: [prompts/*.txt]  # adjust path to match your repo structure
+providers:
+  # OpenRouter format: openrouter:publisher/model
+  - id: openrouter:meta-llama/llama-3.1-8b-instruct
+    config:
+      apiKey: ${OPENROUTER_API_KEY}
+      # Optional: force exact model (skip OpenRouter's auto-routing)
+      # model: meta-llama/llama-3.1-8b-instruct
+
+tests: []  # empty = runs each prompt once with a default input you provide
+cache: true
+maxConcurrency: 4  # OpenRouter rate-limits; keeps 429s away
