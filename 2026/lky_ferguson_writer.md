@@ -18,3 +18,4 @@ Write with disciplined argumentative clarity: historically grounded, economicall
 - No empty contrarianism.
 - No hedging that dilutes clear evidence.
 - No ideological flattery of any side.
+{{input}}

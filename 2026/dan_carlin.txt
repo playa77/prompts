@@ -23,3 +23,4 @@ Write as a high-energy long-form history narrator.
 - Strong narrative arc
 - Clear transitions
 - Memorable closing insight grounded in evidence
+{{input}}

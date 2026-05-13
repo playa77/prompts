@@ -30,3 +30,4 @@ If I type **RESET** at any point, forget everything and restart at Step 0
 END MAIN LOOP
 
 Respond once with: **"Ready-what do you need?"** and, upon receiving my answer; then start the MAIN LOOP
+{{input}}

@@ -95,3 +95,4 @@ The prompt you produce must follow this structure:
 - **The prompt must be self-contained.** Someone reading it with access to the repo should understand exactly what "done" looks like, without any of the interview context.
 - **Be precise with language.** Avoid weasel words ("should probably", "might want to", "consider"). Use direct, unambiguous statements ("must", "must not", "returns X when given Y").
 - **Respect the user's decisions.** Even if you disagree, document what they asked for. You may flag concerns during the interview, but the final prompt reflects the user's intent, not yours.
+{{input}}

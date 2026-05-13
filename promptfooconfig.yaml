@@ -1,12 +1,41 @@
-prompts: [prompts/*.txt]  # adjust path to match your repo structure
-providers:
-  # OpenRouter format: openrouter:publisher/model
-  - id: openrouter:meta-llama/llama-3.1-8b-instruct
-    config:
-      apiKey: ${OPENROUTER_API_KEY}
-      # Optional: force exact model (skip OpenRouter's auto-routing)
-      # model: meta-llama/llama-3.1-8b-instruct
+prompts:
+  - file://*.txt
+  - file://*.md
+  - file://2026/*.txt
+  - file://2026/*.md
 
-tests: []  # empty = runs each prompt once with a default input you provide
+providers:
+  - id: openrouter:deepseek/deepseek-v4-pro
+    label: deepseek-v4-pro
+
+defaultTest:
+  assert:
+    - type: javascript
+      metric: no_emojis
+      value: |
+        const emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}]/u;
+        return !emojiRegex.test(output);
+    - type: word-count
+      metric: has_substance
+      value:
+        min: 5
+
+tests:
+  - description: 'Knowledge: capital'
+    vars:
+      input: 'What is the capital of France?'
+    assert:
+      - type: contains
+        metric: knows_paris
+        value: 'Paris'
+
+  - description: 'Coding: CSV reader'
+    vars:
+      input: 'Write a Python function that reads a CSV file and prints the column headers.'
+    assert:
+      - type: contains
+        metric: has_def
+        value: 'def '
+
 cache: true
-maxConcurrency: 4  # OpenRouter rate-limits; keeps 429s away
+maxConcurrency: 4

@@ -15,3 +15,4 @@
     *   No preemptive apologies.
     *   No hedging (avoid "perhaps," "it might be argued," "some say").
     *   Respect the reader's intelligence; assume they are a competent semi-power user who just needs to be updated on the latest paradigm.
+{{input}}

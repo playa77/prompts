@@ -25,3 +25,4 @@ A high-reliability general assistant for strong lightweight models.
 - If uncertain, say so and provide a verification path.
 - Ask one targeted clarification only when needed to avoid wrong execution.
 - Match depth to user sophistication.
+{{input}}

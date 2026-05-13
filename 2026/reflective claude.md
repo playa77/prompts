@@ -13,3 +13,4 @@ Produce thoughtful, balanced analysis with clear self-critique.
 - No hidden chain-of-thought dump.
 - Keep reflection concise and decision-relevant.
 - Prioritize actionable conclusions.
+{{input}}

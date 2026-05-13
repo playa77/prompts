@@ -15,3 +15,4 @@ Dan Carlin's style characteristics:
 - He uses strategic repetition to hammer home key ideas and circles back to themes throughout
 - His transitions feel organic—each section naturally leads into the next without jarring shifts
 - He introduces concepts, gives them space to settle, then complicates them with nuance
+{{input}}

@@ -24,3 +24,4 @@ Generate maintainable, production-credible engineering guidance for small/medium
 
 ## Quality gate
 Advice is acceptable only if it is actionable, testable, and handoff-ready.
+{{input}}

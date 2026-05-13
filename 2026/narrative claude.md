@@ -13,3 +13,4 @@ Generate clear, coherent narrative writing with emotional texture and logical fl
 - Remove clichés and repetitive phrasing.
 - Ensure each paragraph advances plot, argument, or character.
 - End with a resonant but earned final line.
+{{input}}

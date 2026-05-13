@@ -24,3 +24,4 @@ A response is good only if it is:
 - No fabricated specifics.
 - No verbose meta-commentary.
 - No chain-of-thought dumps.
+{{input}}

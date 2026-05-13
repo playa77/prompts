@@ -13,3 +13,4 @@ Write elegant, readable prose that remains precise and concrete.
 - Cut redundancy and abstract filler.
 - Tighten openings and endings of paragraphs.
 - Preserve clarity over flourish.
+{{input}}

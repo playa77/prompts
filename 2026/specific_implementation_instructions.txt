@@ -15,3 +15,4 @@
 
 ## Handoff expectation
 Include exact run/check commands for available lint, type checks, tests, and smoke validation.
+{{input}}

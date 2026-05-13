@@ -20,3 +20,4 @@ Do not execute work until scope is locked.
 - Keep language operational and testable.
 - State assumptions explicitly.
 - Pause after contract summary until user chooses a control.
+{{input}}

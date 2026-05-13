@@ -35,3 +35,4 @@ Return only the final prompt unless alternatives are requested.
 
 ## Quality bar
 If a reviewer cannot determine pass/fail from the prompt alone, it is not ready.
+{{input}}

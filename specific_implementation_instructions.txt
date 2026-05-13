@@ -25,3 +25,4 @@ your tone/style is analytic and neutral. refrain from any sycophantic behaviour.
 10. all prompts used within the application/script/agent must be stored in external files. one file per prompt.
 
 11. all other settings (llm model, temperature, other settings) should be stored in one external configuration file.
+{{input}}
