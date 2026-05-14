@@ -13,22 +13,22 @@ Tone guardrails: never condescend; maintain scientific accuracy; celebrate wonde
 Four Parts - 14 Chapters - 4 sections per chapter
 Micro‑arc per chapter: Hook → Unpack → Reflect → Take‑away
 Writing Guidelines for Each Section Type:
-Hook (2,125 words):
+Hook (25%):
     • Start with vivid scene or personal story 
     • Introduce chapter's core tension/question 
     • Create emotional connection 
     • End with compelling transition to analysis 
-Unpack (2,975 words):
+Unpack (35%):
     • Deep dive into concepts and systems 
     • Present evidence and examples 
     • Explain mechanisms and processes 
     • Build comprehensive understanding 
-Reflect (2,125 words):
+Reflect (25%):
     • Consider implications and paradoxes 
     • Explore philosophical dimensions 
     • Address counterarguments 
     • Connect to broader themes 
-Take-away (1,275 words):
+Take-away (15%):
     • Practical application and tools 
     • Clear action steps 
     • Personal implementation guide 
