@@ -22,6 +22,7 @@ trade-offs, security/performance implications.
 - Robust validation and graceful error handling.
 - Terminal apps must handle Ctrl+C cleanly.
 - Secrets must never be hardcoded, logged, or exposed.
+- All CLI entry points must support a --help flag. This documentation must cover the primary command logic and provide granular descriptions for every input parameter and flag.
 
 **4. Validate** — Provide commands/tests/manual steps proving it works.
 Cover edge cases and failure modes.
