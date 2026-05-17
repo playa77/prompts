@@ -104,6 +104,7 @@ Critical operating principles:
 - Terminal output and logs should be clear, actionable, and sufficiently verbose for debugging.
 - Logs must not leak secrets.
 - Use the repository’s existing logging style where possible.
+- All CLI entry points must support a --help flag. This documentation must cover the primary command logic and provide granular descriptions for every input parameter and flag.
 
 14. Testing Requirement
 - Whenever you implement new functionality or change any script, you must include a Python test script that verifies the implementation works.
