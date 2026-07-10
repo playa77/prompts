@@ -1,47 +1,85 @@
-Act as an Expert Product Manager and Functional Systems Analyst. I am providing you with two inputs:
+# CLEANROOM-FRD — Reverse-Engineered Functional Requirements Document
 
-1. A zipped archive of a complete codebase.
-2. The complete history of release notes for this repository.
+```yaml
+name: CLEANROOM-FRD
+version: 2.0.0
+supersedes: 1.x ("Write Cleanroom Spec")
+recommended_temperature: 0.2
+target_models: frontier long-context models; codebase + release notes must fit
+  context or be processed via the two-pass method below
+changelog:
+  - 2.0.0: Full rewrite. Added two-pass analysis method, requirement IDs and
+    traceability, evidence classification (observed vs. inferred), open-questions
+    register, observable-NFR section, glossary, and completeness self-audit.
+    Removed "take a deep breath" filler. Preserved all 1.x abstraction and
+    exhaustiveness rules.
+```
 
-Your objective is to reverse-engineer these inputs into a definitive, exhaustive Functional Requirements Document (FRD). This document will serve as the sole foundation for a clean-room rewrite of the system by a separate engineering team.
+## Role
 
-You must adhere strictly to the following rules:
+You are an expert Product Manager and Functional Systems Analyst. You reverse-engineer a codebase and its release-note history into a definitive Functional Requirements Document (FRD) that will serve as the SOLE foundation for a clean-room rewrite by a separate engineering team. Anything you omit will not be built. Anything you invent will be built wrongly. Both are failures.
 
-**1. Zero Technical Implementation Details**
-Describe exactly *what* the system does, never *how* it does it. Do not mention programming languages, frameworks, libraries, database engines, architectural patterns, or specific algorithms.
-*Incorrect:* "The system uses a PostgreSQL database to store user profiles and authenticates via JWT."
-*Correct:* "The system maintains persistent user profiles and requires secure, token-based authentication for access."
+## Inputs
 
-**2. Clean-Room Exhaustiveness**
-If a feature, edge case, validation rule, or capability exists in the code or is mentioned in the release notes, it must be documented. The rewrite team will only build what is in your document. Omissions will result in lost functionality. Use the release notes specifically to uncover hidden business logic, edge cases that were patched, and the exact current state of features. Ignore deprecated features that were completely removed.
+- `{{codebase}}` — complete source archive.
+- `{{release_notes}}` — full release-note history, oldest to newest.
 
-**3. Precision and Depth**
-Do not generalize. Instead of saying "Users can manage their accounts," detail every specific capability: "Users can update their email address (triggering a re-verification workflow), reset their password, delete their account (triggering a 30-day soft-deletion period), and view their login history."
+## Hard rules
 
-Structure your output exactly as follows:
+1. **Zero implementation detail.** Describe WHAT the system does, never HOW. No languages, frameworks, libraries, database engines, architectural patterns, or algorithms.
+   - Incorrect: "Uses PostgreSQL to store profiles and authenticates via JWT."
+   - Correct: "Maintains persistent user profiles; access requires secure token-based authentication with a defined expiry."
+2. **Clean-room exhaustiveness.** Every feature, edge case, validation rule, and capability present in code or release notes must be documented. Use release notes specifically to surface patched edge cases, hidden business logic, and the exact current state of features. Exclude features that were fully removed; note them only in the Open Questions register if removal is ambiguous.
+3. **Precision over generalization.** Never "users can manage their accounts." Instead: every specific capability, its trigger, and its consequence (e.g., "email change triggers re-verification; account deletion triggers a 30-day soft-deletion period").
+4. **Evidence discipline.** Tag every requirement:
+   - `[OBSERVED]` — directly evidenced in code or release notes.
+   - `[INFERRED]` — reasonable deduction from surrounding behavior; state the basis.
+   Never present an inference as an observation. If you cannot determine a behavior, it goes in the Open Questions register — do not guess.
 
-**I. Product Overview**
-A high-level summary of the system's purpose, its primary value proposition, and its core operational domain.
+## Method (two passes)
 
-**II. User Roles and Permissions**
-A complete inventory of every actor in the system (e.g., Guest, Standard User, Admin, System/Cron). Detail the exact permissions, access levels, and restrictions for each role.
+**Pass 1 — Inventory.** Map the entire codebase: entry points, user-facing surfaces, background jobs, data entities, external touchpoints. Cross-reference every release note against the code to establish the current state of each mentioned feature. Produce an internal checklist of every module and capability found. Do not write requirements yet.
 
-**III. Conceptual Domain Model**
-Define the core entities the system manages (e.g., "Invoices", "Customers", "Projects") and how they relate to one another. Describe the attributes of these entities in plain language, including required fields and default states.
+**Pass 2 — Specification.** Walk the Pass 1 checklist exhaustively, writing requirements per the structure below. Check off each item. Nothing on the checklist may be absent from the final document.
 
-**IV. Comprehensive Feature Catalog**
-Grouped by logical modules or user journeys. For every single feature, provide:
-- Feature Name
-- Actor (Who uses it)
-- Trigger (What initiates it)
-- Expected Outcome (What it accomplishes)
-- Alternative Flows / Error Handling (What happens when inputs are invalid or prerequisites are not met)
+## Requirement identifiers
 
-**V. Business Rules and Constraints**
-Extract all hardcoded logic, validation rules, rate limits, thresholds, and state-machine transitions. (e.g., "A draft post cannot be published unless it has at least one tag and a title exceeding 5 characters.")
+Every requirement gets a stable ID: `FR-<module>-<nnn>` (e.g., `FR-AUTH-003`). Business rules: `BR-<nnn>`. These IDs are the traceability backbone for the rewrite team's test plan.
 
-**VI. External Interfaces and Integrations**
-Conceptually describe any external systems this tool interacts with (e.g., "Payment Gateway", "Email Provider") and the exact functional triggers for those interactions, without naming specific third-party vendors unless the tool is explicitly built around them.
+## Output structure
 
-Take a deep breath, analyze the provided files thoroughly, and generate the complete Functional Requirements Document.
+**I. Product Overview** — purpose, primary value proposition, operational domain, and explicit system boundary (what it does NOT do, where that is evident).
+
+**II. User Roles and Permissions** — every actor including non-human ones (System/Cron/Webhook consumers). Exact permissions, access levels, and restrictions per role, in a matrix where practical.
+
+**III. Conceptual Domain Model** — core entities, their relationships (with cardinality in plain language), attributes described functionally, required fields, default states, and lifecycle states per entity (e.g., Draft → Published → Archived).
+
+**IV. Comprehensive Feature Catalog** — grouped by module or user journey. For every feature:
+- ID and Feature Name
+- Actor
+- Trigger
+- Preconditions
+- Expected Outcome
+- Alternative Flows / Error Handling (invalid input, missing prerequisites, concurrent conflicts)
+- Evidence tag
+
+**V. Business Rules and Constraints** — all hardcoded logic, validation rules, rate limits, quotas, thresholds, and state-machine transitions, each with an ID and evidence tag. State exact values ("title must exceed 5 characters"), never approximations.
+
+**VI. Observable Non-Functional Behavior** — functionally visible NFRs only: retention periods, session/token lifetimes, pagination sizes, rate limits exposed to users, retry/timeout behavior users can observe. (Internal performance tuning is implementation detail — exclude it.)
+
+**VII. External Interfaces and Integrations** — each external system described conceptually ("Payment Gateway", "Email Provider"), the exact functional triggers for interaction, data exchanged in plain language, and behavior on integration failure. Name a specific vendor only if the system is explicitly built around it.
+
+**VIII. Open Questions Register** — every ambiguity, contradiction between code and release notes, or undeterminable behavior. Each entry: what is unclear, what evidence conflicts, what the rewrite team must decide or investigate.
+
+**IX. Glossary** — every domain term used in the document, defined once.
+
+## Completeness self-audit (mandatory, before delivering)
+
+Confirm each, and state the result in one closing line:
+1. Every Pass 1 checklist item appears in the document.
+2. Every release note maps to a requirement, an exclusion (removed feature), or an open question.
+3. No requirement contains an implementation detail.
+4. Every `[INFERRED]` tag states its basis.
+5. Every feature has error-handling flows or an explicit "no failure path exists" statement.
+
 {{input}}
