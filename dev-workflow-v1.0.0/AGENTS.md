@@ -115,7 +115,72 @@ These paths are **never accessed** — not read, not written, not listed, not gr
 - Globs, symlinks, `find`, `tar`, backup tools, and recursive copies must be checked: a `tar -czf backup.tgz ~/` or `grep -r password ~/` sweeps denied paths and is therefore itself denied.
 - This list is a floor, not a ceiling. Anything that is obviously a credential store belongs on it even if not named here. Additions are R1 (just add and log); **removals are R3.**
 
-## 9. Known Pitfalls
+## 9. The Inception Rule — Shared-Substrate Discipline (AI-on-AI Work)
+
+The primary work here is AI software: you (opencode) are an agent building and
+administrating **other** agent systems (OpenClaw, Citizen inference pipelines,
+etc.) that run on the same OpenRouter account, frequently the same model, and
+often the same VPS. Dream layers share one dreamer. Consequences:
+
+- **Attribution before diagnosis.** On any 429, timeout, or 5xx during a test
+  run, the prime suspect is your own stack, not the network. Never log or
+  report a "transient network issue" without first ruling out self-inflicted
+  load. Remember that background orchestration and `@council` multiply
+  concurrent calls against the same key — a parallel specialist fan-out *is*
+  a burst of traffic indistinguishable from the system under test.
+- **Correlate by timestamp.** Verbose ISO 8601 logging (§1) exists partly for
+  this: when the system under test errors, check whether your own dispatches
+  overlap the failure window before blaming the provider.
+- **Kill discipline.** Never broad-kill (`pkill node`, `killall bun`,
+  `systemctl restart` on shared units). You may be killing your own session,
+  the opencode server, or the gateway you depend on. Identify targets by
+  pidfile or bound port and verify what the PID is before terminating it.
+- **Config blast radius.** `~/.config/opencode/` is *your own runtime*. Live
+  edits to `opencode.json` or `oh-my-opencode-slim.json` are R2 minimum —
+  log the rejected alternative. Before touching any config file, state which
+  layer it belongs to: the developer agent (you), or the system under
+  development.
+- **Key separation is the structural fix.** One OpenRouter API key per
+  system: developer agent and each system-under-development get distinct
+  keys with per-key spend limits. Never let a system under test inherit the
+  developer key from the environment. Shared-key setups make attribution,
+  rate-limit isolation, and revocation impossible.
+- **Runaway guards before launch.** Before starting any system that itself
+  makes LLM calls: hard spend cap, max-iteration or wall-clock timeout, and
+  a kill switch that does not depend on the loop it is meant to stop.
+- **Never point the system under test at your own endpoints** (session
+  socket, opencode serve port, agent gateway) unless that is explicitly the
+  task.
+
+## 10. opencode + oh-my-opencode-slim Operating Notes
+
+- **Worktree path reconciliation.** The omo-slim `worktrees` skill uses
+  `.slim/worktrees/` lanes; §7 of this document specifies `.worktrees/`.
+  Rule: when omo-slim manages the lane, its `.slim/worktrees/` convention
+  governs placement; all other §7 rules (one branch per worktree, gates
+  inside the worktree, human-only merges, no forced removal) apply
+  unchanged. [R2 — alternative rejected: patching the skill to use
+  `.worktrees/`, which would break on plugin update.]
+- **Concurrency cap.** Background orchestration dispatches specialists in
+  parallel by default, which is in tension with §1 "minimize concurrent
+  calls." Resolution: parallel dispatch is permitted, but cap concurrent
+  background specialists at a configured limit, and treat `@council` as
+  manual-invocation-only (it is the highest-cost path — multiple models in
+  parallel on the same key).
+- **Enforcement over advisory.** This document is a promise; opencode's
+  `permission` config is a lock. The §8 filesystem deny list must also be
+  encoded as bash/read deny patterns in `opencode.json` wherever
+  expressible. When the two disagree, the stricter wins.
+- **Pin the plugin version.** Install omo-slim at a pinned version, never
+  `@latest` auto-tracking. Upgrades are deliberate acts: read the release
+  notes, upgrade, verify with `ping all agents`, log as R1. Note that plugin
+  auto-update refreshes bundled skills — verify local skill customizations
+  survived after any upgrade.
+- **Config edits require schema validation.** `oh-my-opencode-slim.json`
+  ships a JSON schema; validate against it after any edit, before
+  restarting a session on the new config.
+
+## 11. Known Pitfalls
 
 ### Electron + AppImage: Chromium SUID Sandbox Crash
 
